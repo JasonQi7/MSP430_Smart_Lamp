@@ -4,7 +4,6 @@
  */
 
 #include "msp430g2553.h"
-#define FLIP_HOLD (0x3300 | WDTHOLD) // flip WDTHOLD while preserving other bits
 #define SWITCH_FLAG 1; // Swtich flag mask
 
 // UART pins
