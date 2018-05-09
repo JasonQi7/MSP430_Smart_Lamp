@@ -5,7 +5,7 @@
 
 #include "msp430g2553.h"
 #define FLIP_HOLD (0x3300 | WDTHOLD) // flip WDTHOLD while preserving other bits
-#define SwitchFlag 1; // Swtich flag mask
+#define SWITCH_FLAG 1; // Swtich flag mask
 
 // UART pins
 #define RXD BIT1
@@ -123,7 +123,7 @@ void main(void)
                     break;
             }
             currentState=transitionTable[currentState]; // Correct current state
-            pressRelease &= ~ SwitchFlag; // Clear switch flag to indicate that the switch press has been serviced
+            pressRelease &= ~ SWITCH_FLAG; // Clear switch flag to indicate that the switch press has been serviced
             if (flag != 1)
                 storedState=transitionTable[currentState];
             else
@@ -229,16 +229,16 @@ __interrupt void PORT1_ISR (void)
         if (P1IES & BIT3)
         {
             P1OUT |= BIT0; // Auxiliary LED indicator: ON
-            switchState |= SwitchFlag; // Set SwitchFlag state to press
-            pressed |= SwitchFlag; // Set Switch pressed flag
+            switchState |= SWITCH_FLAG; // Set SWITCH_FLAG state to press
+            pressed |= SWITCH_FLAG; // Set Switch pressed flag
         }
         
         // Rising edge detected
         else
         {
             P1OUT &= ~ BIT0; // Auxiliary LED indicator: OFF
-            switchState &= ~SwitchFlag; // Reset Switch state
-            pressRelease |= SwitchFlag; // Set 'Press and Released' flag
+            switchState &= ~SWITCH_FLAG; // Reset Switch state
+            pressRelease |= SWITCH_FLAG; // Set 'Press and Released' flag
             count = 0; // reset counter for Timer A
         }
         
