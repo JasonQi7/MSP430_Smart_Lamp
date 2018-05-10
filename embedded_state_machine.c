@@ -241,10 +241,10 @@ __interrupt void PORT1_ISR (void)
             count = 0; // reset counter for Timer A
         }
         
-    P1IES ^= BIT3; // Toggle edge detect
-    IFG1 &= ~WDTIFG; // Clear interrupt flag for WDT
-    WDTCTL = WDT_MDLY_32 | (WDTCTL & 0x007F); // Restart WDT
-    __bic_SR_register_on_exit(LPM0_bits); // Wake up CPU
+        P1IES ^= BIT3; // Toggle edge detect
+        IFG1 &= ~WDTIFG; // Clear interrupt flag for WDT
+        WDTCTL = WDT_MDLY_32 | (WDTCTL & 0x007F); // Restart WDT
+        __bic_SR_register_on_exit(LPM0_bits); // Wake up CPU
     }
 }
 
