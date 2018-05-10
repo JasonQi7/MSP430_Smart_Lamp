@@ -120,7 +120,6 @@ void main(void)
                     }
                     break;
             }
-            currentState=transitionTable[currentState]; // Correct current state
             pressRelease &= ~ SWITCH_FLAG; // Clear switch flag to indicate that the switch press has been serviced
             if (flag != 1)
                 storedState=transitionTable[currentState];
