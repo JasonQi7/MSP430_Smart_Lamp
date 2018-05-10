@@ -28,7 +28,6 @@
 
 char currentState = 0;
 char storedState = 0;
-char numberStr[5];
 char transitionTable[6] = {LEVEL1, LEVEL2, LEVEL3, OFF, STORE_OFF, RED_ON}; // Transition table
 char actionTable[6] = {ON_LEVEL1, ON_LEVEL2, ON_LEVEL3, OFF_LED, OFF_INST, RE_OPEN}; // Action table
 volatile char switchState = 0; // Flag used for restore state after time out
